@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS tag (
     nome       VARCHAR(100) NOT NULL,
 
     PRIMARY KEY (id),
-    UNIQUE KEY uq_tag_nome (nome)
+    UNIQUE KEY uq_NomeTag (nome)
 
 ) ENGINE=InnoDB;
 
@@ -98,7 +98,27 @@ CREATE TABLE IF NOT EXISTS livro (
 
 
 
+-- ============================================================
+-- livro <-> tag
+-- ============================================================
 
+CREATE TABLE IF NOT EXISTS livro_tag (
+    IdLivro        INT        NOT NULL,
+    IdTag          INT        NOT NULL,
+
+    PRIMARY KEY (IdLivro, IdLivro),
+
+    CONSTRAINT fk_LivroTag_livro
+        FOREIGN KEY (IdLivro)
+        REFERENCES livro(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_LivroTag_tag
+        FOREIGN KEY (IdTag)
+        REFERENCES tag(id)
+        ON DELETE CASCADE
+
+) ENGINE=InnoDB;
 
 
 
