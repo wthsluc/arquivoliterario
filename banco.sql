@@ -1,13 +1,10 @@
--- ============================================================
---  PokéCRUD — Script de criação do banco de dados
---  Execute este arquivo no phpMyAdmin ou via terminal MySQL
--- ============================================================
 
-CREATE DATABASE IF NOT EXISTS crud_pokemon
+
+CREATE DATABASE IF NOT EXISTS arquivoliterario
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
-USE crud_pokemon;
+USE arquivoliterario;
 
 -- ------------------------------------------------------------
 --  Tabela de usuários
@@ -27,7 +24,7 @@ CREATE TABLE IF NOT EXISTS usuario (
 -- ------------------------------------------------------------
 --  Tabela de categorias
 -- ------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS categorias (
+CREATE TABLE IF NOT EXISTS categoria (
     id         INT          NOT NULL AUTO_INCREMENT,
     nome       VARCHAR(100) NOT NULL,
     
@@ -106,7 +103,7 @@ CREATE TABLE IF NOT EXISTS livro_tag (
     IdLivro        INT        NOT NULL,
     IdTag          INT        NOT NULL,
 
-    PRIMARY KEY (IdLivro, IdLivro),
+    PRIMARY KEY (IdLivro, IdTag),
 
     CONSTRAINT fk_LivroTag_livro
         FOREIGN KEY (IdLivro)
@@ -160,4 +157,3 @@ INSERT INTO tag (nome) VALUES
 ('Fanfic'),
 ('Nacional');
 
--
