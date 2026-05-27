@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS categorias (
 ) ENGINE=InnoDB;
 
 
--- oi teste dnv nao to entendendo mais nada
+-- testando DE NOVO pq ainda nao entendi isso direito
 
 -- ------------------------------------------------------------
 --  Tabela de pokémons
