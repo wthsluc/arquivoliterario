@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS usuario (
     UNIQUE KEY uq_email (email)
 ) ENGINE=InnoDB;
 
+
+
 -- ------------------------------------------------------------
 --  Tabela de categorias
 -- ------------------------------------------------------------
@@ -34,6 +36,8 @@ CREATE TABLE IF NOT EXISTS categorias (
         
 ) ENGINE=InnoDB;
 
+
+
 -- ------------------------------------------------------------
 -- Autores
 -- ------------------------------------------------------------
@@ -43,6 +47,29 @@ CREATE TABLE IF NOT EXISTS autor (
 
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
+
+
+-- ============================================================
+-- tags
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS tag (
+    id         INT         NOT NULL AUTO_INCREMENT,
+    nome       VARCHAR(100) NOT NULL,
+
+    PRIMARY KEY (id),
+    UNIQUE KEY uq_tag_nome (nome)
+
+) ENGINE=InnoDB;
+
+
+
+
+
+
+
+
+
 
 
 
