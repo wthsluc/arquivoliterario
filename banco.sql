@@ -81,3 +81,5 @@ INSERT INTO pokemon (nome, tipo, nivel, usuario_id) VALUES
     ('Pikachu',    'Elétrico', 35, 1),
     ('Charmander', 'Fogo',     20, 1),
     ('Squirtle',   'Água',     18, 1);
+
+-- mais um teste pq o github ta me deixando maluca e eu nao sei outra forma de ver se os commits estao indo ou nao
