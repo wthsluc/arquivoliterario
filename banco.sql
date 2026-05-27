@@ -64,6 +64,37 @@ CREATE TABLE IF NOT EXISTS tag (
 
 
 
+-- ============================================================
+-- livro
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS livro (
+    id        INT          NOT NULL AUTO_INCREMENT,
+    titulo    VARCHAR(200) NOT NULL,
+    descricao TEXT,
+    situacao  VARCHAR(30)  NOT NULL DEFAULT 'QUERO_LER',
+    nota      INT,
+    capa      VARCHAR(255),
+    IdAutor   INT NOT NULL,
+    IdCategoria INT NOT NULL,
+    Idusuario INT NOT NULL,
+    criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id),
+    CONSTRAINT fk_livro_autor
+        FOREIGN KEY (IdAutor)
+        REFERENCES autor(id),
+
+    CONSTRAINT fk_livro_categoria
+        FOREIGN KEY (IdCategoria)
+        REFERENCES categoria(id),
+
+    CONSTRAINT fk_livro_usuario
+        FOREIGN KEY (Idusuario)
+        REFERENCES usuario(id)
+        ON DELETE CASCADE
+
+) ENGINE=InnoDB;
 
 
 
