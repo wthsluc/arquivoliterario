@@ -121,43 +121,43 @@ CREATE TABLE IF NOT EXISTS livro_tag (
 ) ENGINE=InnoDB;
 
 
+-- ============================================================
+-- usuario inicial
+-- Email: MeuNomeLegal@gmail.com
+-- Senha: 123456
+-- ============================================================
 
-
-
-
--- ------------------------------------------------------------
---  Tabela de pokémons
--- ------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS pokemon (
-    id         INT          NOT NULL AUTO_INCREMENT,
-    nome       VARCHAR(100) NOT NULL,
-    tipo       VARCHAR(50)  NOT NULL,
-    nivel      INT          NOT NULL DEFAULT 1,
-    usuario_id INT          NOT NULL,
-    PRIMARY KEY (id),
-    CONSTRAINT fk_pokemon_usuario
-        FOREIGN KEY (usuario_id) REFERENCES usuario(id)
-        ON DELETE CASCADE
-) ENGINE=InnoDB;
-
--- ------------------------------------------------------------
---  Usuário de teste
---  Email: admin@email.com
---  Senha: 123456  (SHA256 = 8d969eef6ecad3c29a3a629280e686cf...)
--- ------------------------------------------------------------
-INSERT INTO usuario (nome, email, senha) VALUES
-(
-    'Ash Ketchum',
-    'admin@email.com',
+INSERT INTO usuario (nome, email, senha)
+VALUES (
+    'MeuNomeLegal',
+    'MeuNomeLegal@gmail.com',
     '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'
 );
 
--- ------------------------------------------------------------
---  Pokémons de exemplo vinculados ao usuário acima (id=1)
--- ------------------------------------------------------------
-INSERT INTO pokemon (nome, tipo, nivel, usuario_id) VALUES
-    ('Pikachu',    'Elétrico', 35, 1),
-    ('Charmander', 'Fogo',     20, 1),
-    ('Squirtle',   'Água',     18, 1);
 
--- mais um teste pq o github ta me deixando maluca e eu nao sei outra forma de ver se os commits estao indo ou nao
+-- ============================================================
+-- categorias iniciais (*tenho que adcionar as definitivas depois)
+-- ============================================================
+
+INSERT INTO categoria (nome) VALUES
+('Romance'),
+('Terror'),
+('Fantasia'),
+('Ficção Científica'),
+('Drama'),
+('Suspense');
+
+
+-- ============================================================
+-- tags iniciais (*tenho que adcionar as definitivas depois)
+-- ============================================================
+
+INSERT INTO tag (nome) VALUES
+('Antigas'),
+('wlw'),
+('Enemies to Lovers'),
+('Distopia'),
+('Fanfic'),
+('Nacional');
+
+-
