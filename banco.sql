@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS categorias (
 ) ENGINE=InnoDB;
 
 
--- testando aq p ver se o commit ta indo pro github certo
+-- oi teste dnv nao to entendendo mais nada
 
 -- ------------------------------------------------------------
 --  Tabela de pokémons
