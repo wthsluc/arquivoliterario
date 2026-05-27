@@ -23,6 +23,21 @@ CREATE TABLE IF NOT EXISTS usuario (
 ) ENGINE=InnoDB;
 
 -- ------------------------------------------------------------
+--  Tabela de categorias
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS categorias (
+    id         INT          NOT NULL AUTO_INCREMENT,
+    nome       VARCHAR(100) NOT NULL,
+    
+    PRIMARY KEY (id),
+     UNIQUE KEY uq_NomeCategoria (nome)
+        
+) ENGINE=InnoDB;
+
+
+-- testando aq p ver se o commit ta indo pro github certo
+
+-- ------------------------------------------------------------
 --  Tabela de pokémons
 -- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS pokemon (
