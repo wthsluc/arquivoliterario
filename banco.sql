@@ -35,7 +35,16 @@ CREATE TABLE IF NOT EXISTS categorias (
 ) ENGINE=InnoDB;
 
 
--- oi teste dnv nao to entendendo mais nada
+-- ------------------------------------------------------------
+-- Autores
+-- ------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS autor (
+    id         INT          NOT NULL AUTO_INCREMENT,
+    nome       VARCHAR(150) NOT NULL,
+
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
 
 -- ------------------------------------------------------------
 --  Tabela de pokémons
