@@ -34,7 +34,6 @@ CREATE TABLE IF NOT EXISTS categorias (
         
 ) ENGINE=InnoDB;
 
-
 -- ------------------------------------------------------------
 -- Autores
 -- ------------------------------------------------------------
@@ -44,6 +43,8 @@ CREATE TABLE IF NOT EXISTS autor (
 
     PRIMARY KEY (id)
 ) ENGINE=InnoDB;
+
+
 
 
 -- ------------------------------------------------------------
