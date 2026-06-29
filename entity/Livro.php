@@ -14,11 +14,15 @@ class Livro {
     
 
     public function __construct(array $dados) {
-        $this->id        = (int) ($dados['id']        ?? 0);
-        $this->nome      =        $dados['nome']       ?? '';
-        $this->tipo      =        $dados['tipo']       ?? '';
-        $this->nivel     = (int) ($dados['nivel']      ?? 1);
-        $this->usuarioId = (int) ($dados['usuario_id'] ?? 0);
+        $this->id           = (int) ($dados['id']        ?? 0);
+        $this->titulo       =        $dados['titulo']       ?? '';
+        $this->descricao    =        $dados['descricao']       ?? '';
+        $this->situacao     =        $dados['situacao']      ??  '';
+        $this->nota         = (int) ($dados['nota'] ?? 0);
+        $this->capa         =        $dados['capa']        ?? '';
+        $this->IdAutor      = (int) ($dados['IdAutor']        ?? 0);
+        $this->IdCategoria  = (int) ($dados['IdCategoria']        ?? 0);
+        $this->Idusuario    = (int) ($dados['Idusuario']        ?? 0);
     }
 
     public function getId():        int    { return $this->id; }
