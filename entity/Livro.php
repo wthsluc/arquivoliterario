@@ -25,11 +25,16 @@ class Livro {
         $this->Idusuario    = (int) ($dados['Idusuario']        ?? 0);
     }
 
-    public function getId():        int    { return $this->id; }
-    public function getNome():      string { return $this->nome; }
-    public function getTipo():      string { return $this->tipo; }
-    public function getNivel():     int    { return $this->nivel; }
-    public function getUsuarioId(): int    { return $this->usuarioId; }
+    public function getId():          int    { return $this->id; }
+    public function getTitulo():      string { return $this->titulo; }
+    public function getDescricao():   string { return $this->descricao; }
+    public function getSituacao():    string { return $this->situacao; }
+    public function getNota():        int    { return $this->nota; }
+    public function getCapa():        string { return $this->capa; }
+    public function getIdAutor():     int    { return $this->IdAutor; }
+    public function getIdCategoria(): int    { return $this->IdCategoria; }
+    public function getIdusuario():   int    { return $this->Idusuario; }
+    
 
     public static function novo(string $nome, string $tipo, int $nivel, int $usuarioId): Pokemon {
         if ($usuarioId <= 0) {
