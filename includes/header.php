@@ -14,7 +14,7 @@
 
     <nav class="nav">
       <a href="../pages/index.php">Meus Livros</a>
-      <a href="../pages/pokemon_create.php">+ Novo Livro</a>
+      <a href="../pages/livro_create.php">+ Novo Livro</a>
     </nav>
 
     <div class="header-user">
