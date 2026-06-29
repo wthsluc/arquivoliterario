@@ -2,7 +2,7 @@
 
 session_start();
 
-if (empty($_SESSION['usuario_id'])) {
+if (empty($_SESSION['Idusuario'])) {
     header('Location: ../pages/login.php');
     exit;
 }
