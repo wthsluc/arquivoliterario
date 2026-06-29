@@ -34,19 +34,18 @@ class Livro {
     public function getIdAutor():     int    { return $this->IdAutor; }
     public function getIdCategoria(): int    { return $this->IdCategoria; }
     public function getIdusuario():   int    { return $this->Idusuario; }
-    
 
-    public static function novo(string $nome, string $tipo, int $nivel, int $usuarioId): Pokemon {
-        if ($usuarioId <= 0) {
-            throw new InvalidArgumentException('Usuário inválido.');
-        }
-
-        $pokemon = new Pokemon(['usuario_id' => $usuarioId]);
-        $pokemon->alterarDados($nome, $tipo, $nivel);
-
-        return $pokemon;
+    public static function novo(string $titulo, string $descricao,string $situacao,int $nota,string $capa,int $IdAutor,int $IdCategoria,int $Idusuario): Livro {
+        if ($Idusuario <= 0) {
+        throw new InvalidArgumentException('Usuário inválido.');
     }
 
+    $livro = new Livro(['Idusuario' => $Idusuario]);
+    $livro->alterarDados($titulo, $descricao, $situacao, $nota, $capa, $IdAutor, $IdCategoria);
+
+    return $livro;
+    }
+    
     public function alterarDados(string $nome, string $tipo, int $nivel): void {
         $nome = trim($nome);
         $tipo = trim($tipo);
