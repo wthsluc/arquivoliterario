@@ -1,12 +1,17 @@
 <?php
 
-class Pokemon {
+class Livro {
 
     private int    $id;
-    private string $nome;
-    private string $tipo;
-    private int    $nivel;
-    private int    $usuarioId;
+    private string $titulo;
+    private string $descricao;
+    private string $situacao;
+    private int    $nota;
+    private string $capa;
+    private int    $IdAutor;
+    private int    $IdCategoria;
+    private int    $Idusuario;
+    
 
     public function __construct(array $dados) {
         $this->id        = (int) ($dados['id']        ?? 0);
