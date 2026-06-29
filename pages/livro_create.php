@@ -1,9 +1,22 @@
 <?php
 
 require_once __DIR__ . '/../includes/auth.php';
-require_once __DIR__ . '/../repository/PokemonRepository.php';
+require_once __DIR__ . '/../repository/LivroRepository.php';
 
-$repo = new PokemonRepository();
+$repo = new LivroRepository();
+
+$erro = '';
+$titulo = '';
+$descricao = '';
+$situacao = '';
+$nota = 0;
+$capa = '';
+$situacao = '';
+$IdAutor = 1;
+$IdCategoria = '';
+$tags = '';
+
+
 
 $erro = '';
 $nome = '';
@@ -20,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nivel = (int) ($_POST['nivel'] ?? 1);
 
     try {
-        $pokemon = Pokemon::novo($nome, $tipo, $nivel, $_SESSION['usuario_id']);
-        $repo->salvar($pokemon);
+        $pokemon = Pokemon::novo($nome, $tipo, $nivel, $_SESSION['Idusuario']);
+        $repo->salvar($livro);
 
         header('Location: index.php');
         exit;

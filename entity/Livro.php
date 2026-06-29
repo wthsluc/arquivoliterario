@@ -58,7 +58,7 @@ class Livro {
         throw new InvalidArgumentException('Título e descrição são obrigatórios.');
     }
 
-    if ($nota < 0 || $nota > 5) {
+    if ($nota <= 0 || $nota => 5) {
         throw new InvalidArgumentException('A nota deve ser entre 0 e 5.');
     }
 
