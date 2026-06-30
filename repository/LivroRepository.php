@@ -1,9 +1,9 @@
 <?php
 
 require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/../entity/Pokemon.php';
+require_once __DIR__ . '/../entity/livro.php';
 
-class PokemonRepository {
+class LivroRepository {
 
     private PDO $pdo;
 
@@ -11,41 +11,51 @@ class PokemonRepository {
         $this->pdo = getConexao();
     }
 
-    /** @return Pokemon[] */
+    /** @return Livro[] */
     public function listarPorUsuario(int $usuarioId): array {
         $stmt = $this->pdo->prepare(
-            'SELECT * FROM pokemon WHERE usuario_id = :uid ORDER BY nome ASC'
+            'SELECT * FROM livro WHERE Idusuario = :uid ORDER BY titulo ASC'
         );
         $stmt->execute([':uid' => $usuarioId]);
         $lista = [];
         foreach ($stmt->fetchAll() as $dados) {
-            $lista[] = new Pokemon($dados);
+            $lista[] = new Livro($dados);
         }
         return $lista;
     }
 
-    public function buscarPorId(int $id): ?Pokemon {
-        $stmt = $this->pdo->prepare('SELECT * FROM pokemon WHERE id = :id LIMIT 1');
+    public function buscarPorId(int $id): ?Livro {
+        $stmt = $this->pdo->prepare('SELECT * FROM livro WHERE id = :id LIMIT 1');
         $stmt->execute([':id' => $id]);
         $dados = $stmt->fetch();
 
         if ($dados) {
-            return new Pokemon($dados);
+            return new Livro($dados);
         }
 
         return null;
     }
 
-    public function salvar(Pokemon $pokemon): void {
-        if ($pokemon->getId() > 0) {
+    public function salvar(Livro $livro): void {
+        if ($livro->getId() > 0) {
             $stmt = $this->pdo->prepare(
-                'UPDATE pokemon SET nome = :nome, tipo = :tipo, nivel = :nivel WHERE id = :id'
-            );
-            $stmt->execute([
-                ':nome'  => $pokemon->getNome(),
-                ':tipo'  => $pokemon->getTipo(),
-                ':nivel' => $pokemon->getNivel(),
-                ':id'    => $pokemon->getId(),
+                'UPDATE livro  SET titulo = :titulo,
+                     descricao = :descricao,
+                     situacao = :situacao,
+                     nota = :nota,
+                     capa = :capa,
+                     IdAutor = :autor,
+                     IdCategoria = :categoria
+                 WHERE id = :id' );
+             $stmt->execute([
+                ':titulo' => $livro->getTitulo(),
+                ':descricao' => $livro->getDescricao(),
+                ':situacao' => $livro->getSituacao(),
+                ':nota' => $livro->getNota(),
+                ':capa' => $livro->getCapa(),
+                ':autor' => $livro->getIdAutor(),
+                ':categoria' => $livro->getIdCategoria(),
+                ':id' => $livro->getId()
             ]);
             return;
         }
