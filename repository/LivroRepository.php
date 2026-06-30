@@ -86,15 +86,15 @@ class LivroRepository {
         $this->salvar($livro);
     }
 
-    public function atualizar(int $id, string $nome, string $tipo, int $nivel): void {
-        $pokemon = $this->buscarPorId($id);
+    public function atualizar( int $id, string $titulo, string $descricao, string $situacao, int $nota, string $capa, int $IdAutor, int $IdCategoria): void {
+        $livro = $this->buscarPorId($id);
 
-        if ($pokemon === null) {
-            throw new RuntimeException('Pokémon não encontrado.');
+        if ($livro === null) {
+            throw new RuntimeException('Livro não encontrado.');
         }
 
-        $pokemon->alterarDados($nome, $tipo, $nivel);
-        $this->salvar($pokemon);
+        $livro->alterarDados( $titulo, $descricao, $situacao, $nota, $capa, $IdAutor, $IdCategoria);
+        $this->salvar($livro);
     }
 
     public function excluir(int $id): void {
