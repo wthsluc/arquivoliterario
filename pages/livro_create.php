@@ -22,17 +22,25 @@ $nota = 0;
 $capa = '';
 $IdAutor = 0;
 $IdCategoria = 0;
+$erro = '';
 
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nome  = trim($_POST['nome'] ?? '');
-    $tipo  = trim($_POST['tipo'] ?? '');
-    $nivel = (int) ($_POST['nivel'] ?? 1);
+   $titulo = trim($_POST['titulo'] ?? '');
+  $descricao = trim($_POST['descricao'] ?? '');
+  $situacao = trim($_POST['situacao'] ?? '');
+  $nota = (int) ($_POST['nota'] ?? 0);
+  $capa = trim($_POST['capa'] ?? '');
+  $IdAutor = (int) ($_POST['IdAutor'] ?? 0);
+  $IdCategoria = (int) ($_POST['IdCategoria'] ?? 0);
+  
+  $tagsSelecionadas = $_POST['tags'] ?? [];
 
     try {
-        $pokemon = Pokemon::novo($nome, $tipo, $nivel, $_SESSION['Idusuario']);
-        $repo->salvar($livro);
+        $livro = Livro::novo($titulo, $descricao, $situacao, $nota, $capa, $IdAutor, $IdCategoria, $_SESSION['usuario_id']);
+
+       $repo->salvar($livro);
 
         header('Location: index.php');
         exit;
@@ -45,7 +53,7 @@ require_once __DIR__ . '/../includes/header.php';
 ?>
 
 <div class="page-header">
-  <h2>Novo Pokémon</h2>
+  <h2>Novo livro</h2>
   <a href="index.php" class="btn btn-ghost">← Voltar</a>
 </div>
 
@@ -54,15 +62,15 @@ require_once __DIR__ . '/../includes/header.php';
 <?php endif; ?>
 
 <div class="form-card">
-  <form method="POST" action="pokemon_create.php">
+  <form method="POST" action="livro_create.php">
 
     <div class="form-group">
-      <label for="nome">Nome do Pokémon</label>
+      <label for="nome">Nome do Livro</label>
       <input
         type="text"
         id="nome"
         name="nome"
-        placeholder="Ex: Charmander"
+        placeholder="Ex: A paixão segundo G.H"
         value="<?= htmlspecialchars($nome) ?>"
         required
       />
