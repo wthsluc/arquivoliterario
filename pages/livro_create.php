@@ -85,8 +85,7 @@ require_once __DIR__ . '/../includes/header.php';
 
         <textarea
             id="descricao"
-            name="descricao"
-            required><?= htmlspecialchars($descricao) ?></textarea>
+            name="descricao"><?= htmlspecialchars($descricao) ?></textarea>
     </div>
 
     <div class="form-group">

@@ -98,7 +98,7 @@ class LivroRepository {
     }
 
     public function excluir(int $id): void {
-        $stmt = $this->pdo->prepare('DELETE FROM pokemon WHERE id = :id');
+        $stmt = $this->pdo->prepare('DELETE FROM livro WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
 }
