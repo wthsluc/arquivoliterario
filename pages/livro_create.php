@@ -2,30 +2,28 @@
 
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../repository/LivroRepository.php';
+require_once __DIR__ . '/../repository/AutorRepository.php';
+require_once __DIR__ . '/../repository/CategoriaRepository.php';
+require_once __DIR__ . '/../repository/TagRepository.php';
 
 $repo = new LivroRepository();
+$autorRepo = new AutorRepository();
+$categoriaRepo = new CategoriaRepository();
+$tagRepo = new TagRepository();
 
-$erro = '';
+$autores = $autorRepo->listarTodos();
+$categorias = $categoriaRepo->listarTodos();
+$tags = $tagRepo->listarTodos();
+
 $titulo = '';
 $descricao = '';
 $situacao = '';
 $nota = 0;
 $capa = '';
-$situacao = '';
-$IdAutor = 1;
-$IdCategoria = '';
-$tags = '';
+$IdAutor = 0;
+$IdCategoria = 0;
 
 
-
-$erro = '';
-$nome = '';
-$tipo = '';
-$nivel = 1;
-
-$tipos = ['Fogo', 'Água', 'Planta', 'Elétrico', 'Terra', 'Voador',
-          'Psíquico', 'Gelo', 'Lutador', 'Venenoso', 'Normal', 'Fantasma',
-          'Dragão', 'Pedra', 'Aço', 'Fada'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome  = trim($_POST['nome'] ?? '');
