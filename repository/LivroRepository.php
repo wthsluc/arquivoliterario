@@ -60,21 +60,25 @@ class LivroRepository {
             return;
         }
 
-        if ($pokemon->getUsuarioId() <= 0) {
+        if ($livro->getUsuarioId() <= 0) {
             throw new InvalidArgumentException('Usuário inválido.');
         }
 
         $stmt = $this->pdo->prepare(
-            'INSERT INTO pokemon (nome, tipo, nivel, usuario_id) VALUES (:nome, :tipo, :nivel, :uid)'
+            'INSERT INTO livro (titulo, descricao, situacao, nota, capa, IdAutor, IdCategoria, Idusuario) VALUES (:titulo, :descricao, :situacao, :nota, :capa, :autor, :categoria, :usuario)'
         );
         $stmt->execute([
-            ':nome'  => $pokemon->getNome(),
-            ':tipo'  => $pokemon->getTipo(),
-            ':nivel' => $pokemon->getNivel(),
-            ':uid'   => $pokemon->getUsuarioId(),
+            ':titulo' => $livro->getTitulo(),
+            ':descricao' => $livro->getDescricao(),
+            ':situacao' => $livro->getSituacao(),
+            ':nota' => $livro->getNota(),
+            ':capa' => $livro->getCapa(),
+            ':autor' => $livro->getIdAutor(),
+            ':categoria' => $livro->getIdCategoria(),
+            ':usuario' => $livro->getIdusuario()
         ]);
 
-        $pokemon->registrarIdGerado((int) $this->pdo->lastInsertId());
+        $livro->registrarIdGerado((int) $this->pdo->lastInsertId());
     }
 
     public function inserir(string $nome, string $tipo, int $nivel, int $usuarioId): void {
