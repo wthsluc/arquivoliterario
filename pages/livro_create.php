@@ -51,68 +51,167 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 require_once __DIR__ . '/../includes/header.php';
 ?>
-
 <div class="page-header">
-  <h2>Novo livro</h2>
-  <a href="index.php" class="btn btn-ghost">← Voltar</a>
+    <h2>Novo Livro</h2>
+
+    <a href="index.php" class="btn btn-ghost">
+        ← Voltar
+    </a>
 </div>
 
 <?php if ($erro !== ''): ?>
-  <div class="alert alert-erro"><?= htmlspecialchars($erro) ?></div>
+    <div class="alert alert-erro">
+        <?= htmlspecialchars($erro) ?>
+    </div>
 <?php endif; ?>
 
 <div class="form-card">
-  <form method="POST" action="livro_create.php">
+
+<form method="POST" action="livro_create.php">
 
     <div class="form-group">
-      <label for="nome">Nome do Livro</label>
-      <input
-        type="text"
-        id="nome"
-        name="nome"
-        placeholder="Ex: A paixão segundo G.H"
-        value="<?= htmlspecialchars($nome) ?>"
-        required
-      />
+        <label for="titulo">Título</label>
+
+        <input
+            type="text"
+            id="titulo"
+            name="titulo"
+            value="<?= htmlspecialchars($titulo) ?>"
+            required>
     </div>
 
     <div class="form-group">
-      <label for="tipo">Tipo</label>
-      <select id="tipo" name="tipo" required>
-        <option value="">Selecione o tipo...</option>
-        <?php foreach ($tipos as $t): ?>
-          <?php
-            $selecionado = '';
-            if ($tipo === $t) {
-                $selecionado = 'selected';
-            }
-          ?>
-          <option value="<?= $t ?>" <?= $selecionado ?>>
-            <?= $t ?>
-          </option>
+        <label for="descricao">Descrição</label>
+
+        <textarea
+            id="descricao"
+            name="descricao"
+            required><?= htmlspecialchars($descricao) ?></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="situacao">Situação</label>
+
+        <select
+            id="situacao"
+            name="situacao"
+            required>
+
+            <option value="QUERO_LER">Quero Ler</option>
+            <option value="LENDO">Lendo</option>
+            <option value="LIDO">Lido</option>
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="nota">Nota</label>
+
+        <input
+            type="number"
+            id="nota"
+            name="nota"
+            min="0"
+            max="5"
+            value="<?= $nota ?>">
+    </div>
+
+    <div class="form-group">
+        <label for="capa">Capa</label>
+
+        <input
+            type="text"
+            id="capa"
+            name="capa"
+            value="<?= htmlspecialchars($capa) ?>">
+    </div>
+
+    <div class="form-group">
+        <label for="IdAutor">Autor</label>
+
+        <select
+            id="IdAutor"
+            name="IdAutor"
+            required>
+
+            <option value="">Selecione...</option>
+
+            <?php foreach ($autores as $autor): ?>
+
+                <option value="<?= $autor['id'] ?>">
+                    <?= htmlspecialchars($autor['nome']) ?>
+                </option>
+
+            <?php endforeach; ?>
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="IdCategoria">Categoria</label>
+
+        <select
+            id="IdCategoria"
+            name="IdCategoria"
+            required>
+
+            <option value="">Selecione...</option>
+
+            <?php foreach ($categorias as $categoria): ?>
+
+                <option value="<?= $categoria['id'] ?>">
+                    <?= htmlspecialchars($categoria['nome']) ?>
+                </option>
+
+            <?php endforeach; ?>
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Tags</label>
+
+        <?php foreach ($tags as $tag): ?>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="tags[]"
+                    value="<?= $tag['id'] ?>">
+
+                <?= htmlspecialchars($tag['nome']) ?>
+
+            </label>
+
+            <br>
+
         <?php endforeach; ?>
-      </select>
-    </div>
 
-    <div class="form-group">
-      <label for="nivel">Nível (1 – 100)</label>
-      <input
-        type="number"
-        id="nivel"
-        name="nivel"
-        min="1"
-        max="100"
-        value="<?= $nivel ?>"
-        required
-      />
     </div>
 
     <div class="form-actions">
-      <button type="submit" class="btn btn-primary">Cadastrar Pokémon</button>
-      <a href="index.php" class="btn btn-ghost">Cancelar</a>
+
+        <button
+            type="submit"
+            class="btn btn-primary">
+
+            Cadastrar Livro
+
+        </button>
+
+        <a
+            href="index.php"
+            class="btn btn-ghost">
+
+            Cancelar
+
+        </a>
+
     </div>
 
-  </form>
+</form>
+
 </div>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
