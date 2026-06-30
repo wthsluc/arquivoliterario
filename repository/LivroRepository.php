@@ -81,9 +81,9 @@ class LivroRepository {
         $livro->registrarIdGerado((int) $this->pdo->lastInsertId());
     }
 
-    public function inserir(string $nome, string $tipo, int $nivel, int $usuarioId): void {
-        $pokemon = Pokemon::novo($nome, $tipo, $nivel, $usuarioId);
-        $this->salvar($pokemon);
+    public function inserir(string $titulo, string $descricao, string $situacao, int $nota, string $capa, int $IdAutor, int $IdCategoria, int $Idusuario): void {
+        $livro = Livro::novo($titulo, $descricao, $situacao, $nota, $capa, $IdAutor, $IdCategoria, $Idusuario);
+        $this->salvar($livro);
     }
 
     public function atualizar(int $id, string $nome, string $tipo, int $nivel): void {
