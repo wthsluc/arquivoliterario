@@ -29,6 +29,7 @@ if ($livro === null || $livro->getIdusuario() !== $_SESSION['Idusuario']) {
 $autores = $autorRepo->listarTodos();
 $categorias = $categoriaRepo->listarTodos();
 $tags = $tagRepo->listarTodos();
+$tagsDoLivro = $repo->buscarTagsDoLivro($livro->getId());
 
 $erro = '';
 $titulo = $livro->getTitulo();
@@ -56,6 +57,11 @@ $tagsSelecionadas = $_POST['tags'] ?? [];
     try {
        $livro->alterarDados($titulo,$descricao,$situacao,$nota,$capa,$IdAutor,$IdCategoria);
        $repo->salvar($livro);
+
+       $repo->salvarTags(
+       $livro->getId(),
+       $tagsSelecionadas
+       );
       
         header('Location: index.php');
         exit;
@@ -210,8 +216,8 @@ require_once __DIR__ . '/../includes/header.php';
                     type="checkbox"
                     name="tags[]"
                     value="<?= $tag['id'] ?>">
-
-                <?= htmlspecialchars($tag['nome']) ?>
+                    <?= in_array($tag['id'], $tagsDoLivro) ? 'checked' : '' ?>>
+                
 
             </label>
 
