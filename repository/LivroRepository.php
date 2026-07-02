@@ -119,7 +119,7 @@ class LivroRepository {
 
     public function salvarTags(int $IdLivro, array $tags): void {
 
-    // Remove todas as tags atuais
+    
     $stmt = $this->pdo->prepare(
         'DELETE FROM livro_tag WHERE IdLivro = :livro'
     );
@@ -128,11 +128,11 @@ class LivroRepository {
         ':livro' => $IdLivro
     ]);
 
-    // Insere as novas tags
+    
     $stmt = $this->pdo->prepare(
         'INSERT INTO livro_tag (IdLivro, IdTag)
          VALUES (:livro, :tag)'
-    );
+    ); 
 
     foreach ($tags as $IdTag) {
 
@@ -141,6 +141,7 @@ class LivroRepository {
             ':tag' => $IdTag
         ]);
 
+    }
     }
     public function buscarNomesTags(int $IdLivro): string {
 
@@ -162,4 +163,4 @@ class LivroRepository {
     return implode(', ', $tags);
     }
 }
-}
+
