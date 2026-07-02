@@ -102,6 +102,21 @@ class LivroRepository {
         $stmt->execute([':id' => $id]);
     }
 
+    public function buscarTagsDoLivro(int $IdLivro): array {
+
+    $stmt = $this->pdo->prepare(
+        'SELECT IdTag
+         FROM livro_tag
+         WHERE IdLivro = :livro'
+    );
+
+    $stmt->execute([
+        ':livro' => $idLivro
+    ]);
+
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
+    }
+
     public function salvarTags(int $IdLivro, array $tags): void {
 
     // Remove todas as tags atuais
@@ -126,6 +141,25 @@ class LivroRepository {
             ':tag' => $IdTag
         ]);
 
+    }
+    public function buscarNomesTags(int $IdLivro): string {
+
+    $stmt = $this->pdo->prepare(
+        'SELECT tag.nome
+         FROM tag
+         INNER JOIN livro_tag
+             ON tag.id = livro_tag.IdTag
+         WHERE livro_tag.IdLivro = :livro
+         ORDER BY tag.nome'
+    );
+
+    $stmt->execute([
+        ':livro' => $IdLivro
+    ]);
+
+    $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    return implode(', ', $tags);
     }
 }
 }
