@@ -37,7 +37,7 @@ require_once __DIR__ . '/../includes/header.php';
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($livros as $livros): ?>
+        <?php foreach ($livros as $livro): ?>
 
          
         <tr>
@@ -49,7 +49,6 @@ require_once __DIR__ . '/../includes/header.php';
             <td><?= htmlspecialchars($livro->getCapa()) ?></td>
             <td><?= $livro->getIdAutor() ?></td>
             <td><?= $livro->getIdCategoria() ?></td>
-            <td><?= $livro->getTag() ?></td>
             <td class="acoes">
               <a href="livro_edit.php?id=<?= $livro->getId() ?>" class="btn btn-sm btn-editar">Editar</a>
               <a href="livro_delete.php?id=<?= $livro->getId() ?>" class="btn btn-sm btn-excluir">Excluir</a>
