@@ -101,4 +101,31 @@ class LivroRepository {
         $stmt = $this->pdo->prepare('DELETE FROM livro WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
+
+    public function salvarTags(int $IdLivro, array $tags): void {
+
+    // Remove todas as tags atuais
+    $stmt = $this->pdo->prepare(
+        'DELETE FROM livro_tag WHERE IdLivro = :livro'
+    );
+
+    $stmt->execute([
+        ':livro' => $IdLivro
+    ]);
+
+    // Insere as novas tags
+    $stmt = $this->pdo->prepare(
+        'INSERT INTO livro_tag (IdLivro, IdTag)
+         VALUES (:livro, :tag)'
+    );
+
+    foreach ($tags as $IdTag) {
+
+        $stmt->execute([
+            ':livro' => $IdLivro,
+            ':tag' => $IdTag
+        ]);
+
+    }
+}
 }

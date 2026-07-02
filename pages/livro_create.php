@@ -41,6 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $livro = Livro::novo($titulo, $descricao, $situacao, $nota, $capa, $IdAutor, $IdCategoria, $_SESSION['usuario_id']);
 
        $repo->salvar($livro);
+       $repo->salvarTags(
+       $livro->getId(),
+       $tagsSelecionadas
+       );
 
         header('Location: index.php');
         exit;
