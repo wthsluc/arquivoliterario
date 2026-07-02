@@ -60,7 +60,7 @@ class LivroRepository {
             return;
         }
 
-        if ($livro->getUsuarioId() <= 0) {
+        if ($livro->getIdusuario() <= 0) {
             throw new InvalidArgumentException('Usuário inválido.');
         }
 
