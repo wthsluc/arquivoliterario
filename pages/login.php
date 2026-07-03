@@ -41,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login — PokéCRUD</title>
+  <title>Login — Arquivo Literário</title>
   <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body class="login-body">
 
 <div class="login-card">
-  <div class="login-logo">PokéCRUD</div>
+  <div class="login-logo">Arquivo Literário</div>
   <h1 class="login-title">Entrar no sistema</h1>
 
   <?php if ($erro !== ''): ?>
@@ -79,6 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+    <p style="margin-top: 15px; text-align: center;">
+    Ainda não tem uma conta?
+    <a href="registro.php">Cadastrar</a>
+</p>
   </form>
 
 </div>
