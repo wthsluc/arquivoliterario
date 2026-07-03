@@ -2,9 +2,21 @@
 
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../repository/LivroRepository.php';
+require_once __DIR__ . '/../repository/CategoriaRepository.php';
 
 $repo     = new LivroRepository();
-$livros = $repo->listarPorUsuario($_SESSION['Idusuario']);
+$categoriaSelecionada = (int) ($_GET['categoria'] ?? 0);
+
+if ($categoriaSelecionada > 0) {
+    $livros = $repo->listarCategoria(
+        $_SESSION['Idusuario'],
+        $categoriaSelecionada
+    );
+} else {
+    $livros = $repo->listarPorUsuario($_SESSION['Idusuario']);
+}
+$categoriaRepo = new CategoriaRepository();
+$categorias = $categoriaRepo->listarTodos();
 
 require_once __DIR__ . '/../includes/header.php';
 ?>
@@ -13,7 +25,33 @@ require_once __DIR__ . '/../includes/header.php';
   <h2>Meus Livros</h2>
   <a href="livro_create.php" class="btn btn-primary">+ Novo livro</a>
 </div>
+<form method="GET" class="form-inline" style="margin-bottom:20px;">
 
+    <label for="categoria">Categoria:</label>
+
+    <select id="categoria" name="categoria">
+
+        <option value="0">Todas</option>
+
+        <?php foreach ($categorias as $categoria): ?>
+
+            <option
+                value="<?= $categoria['id'] ?>"
+                <?= $categoriaSelecionada == $categoria['id'] ? 'selected' : '' ?>>
+
+                <?= htmlspecialchars($categoria['nome']) ?>
+
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+
+    <button type="submit" class="btn btn-primary">
+        Filtrar
+    </button>
+
+</form>
 <?php if (empty($livros)): ?>
   <div class="empty-state">
     <p>Você ainda não cadastrou nenhum livro.</p>

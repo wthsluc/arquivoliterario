@@ -186,7 +186,7 @@ class LivroRepository {
     }
 
     public function buscarNomeCategoria(int $idCategoria): string
-{
+    {
     $stmt = $this->pdo->prepare(
         'SELECT nome FROM categoria WHERE id = :id'
     );
@@ -196,6 +196,29 @@ class LivroRepository {
     ]);
 
     return $stmt->fetchColumn() ?: '';
+    }
+    public function listarCategoria(int $usuarioId, int $categoriaId): array
+{
+    $stmt = $this->pdo->prepare(
+        'SELECT *
+         FROM livro
+         WHERE Idusuario = :uid
+         AND IdCategoria = :categoria
+         ORDER BY titulo ASC'
+    );
+
+    $stmt->execute([
+        ':uid' => $usuarioId,
+        ':categoria' => $categoriaId
+    ]);
+
+    $lista = [];
+
+    foreach ($stmt->fetchAll() as $dados) {
+        $lista[] = new Livro($dados);
+    }
+
+    return $lista;
 }
 }
 

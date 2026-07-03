@@ -151,9 +151,10 @@ INSERT INTO categoria (nome) VALUES
 
 INSERT INTO tag (nome) VALUES
 ('Antigas'),
-('wlw'),
+('lgbt'),
 ('Enemies to Lovers'),
 ('Distopia'),
 ('Fanfic'),
-('Nacional');
+('Nacional'),
+('infantil');
 
