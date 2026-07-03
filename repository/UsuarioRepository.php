@@ -22,4 +22,50 @@ class UsuarioRepository {
 
         return null;
     }
+
+    public function excluir(int $Idusuario): void
+{
+    $this->pdo->beginTransaction();
+
+    try {
+
+        $stmt = $this->pdo->prepare(
+            'DELETE livro_tag
+             FROM livro_tag
+             INNER JOIN livro
+                 ON livro.id = livro_tag.IdLivro
+             WHERE livro.Idusuario = :id'
+        );
+
+        $stmt->execute([
+            ':id' => $IdUsuario
+        ]);
+
+        $stmt = $this->pdo->prepare(
+            'DELETE FROM livro
+             WHERE Idusuario = :id'
+        );
+
+        $stmt->execute([
+            ':id' => $Idusuario
+        ]);
+
+        $stmt = $this->pdo->prepare(
+            'DELETE FROM usuario
+             WHERE id = :id'
+        );
+
+        $stmt->execute([
+            ':id' => $Idusuario
+        ]);
+
+        $this->pdo->commit();
+
+    } catch (Exception $e) {
+
+        $this->pdo->rollBack();
+        throw $e;
+
+    }
+}
 }

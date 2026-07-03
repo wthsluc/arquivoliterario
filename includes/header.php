@@ -24,6 +24,8 @@
       <span class="user-name">
         <?= htmlspecialchars($nomeUser) ?>
       </span>
+      <a href="../pages/usuario_delete.php" class="btn-logout">Excluir Conta</a>
+
       <a href="../pages/logout.php" class="btn-logout">Sair</a>
     </div>
   </div>
