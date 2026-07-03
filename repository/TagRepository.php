@@ -7,7 +7,7 @@ class TagRepository {
     private PDO $pdo;
 
     public function __construct() {
-        $this->pdo = Database::getConnection();
+        $this->pdo = getConexao();
     }
 
     public function listarTodos(): array {
