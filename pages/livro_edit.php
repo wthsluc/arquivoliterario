@@ -115,7 +115,10 @@ require_once __DIR__ . '/../includes/header.php';
 
 <div class="form-card">
 
-<form method="POST" action="livro_edit.php?id=<?= $livro->getId() ?>">
+<form 
+    method="POST"
+    action="livro_edit.php?id=<?= $livro->getId() ?>"
+    enctype="multipart/form-data">
 
     <div class="form-group">
         <label for="titulo">Título</label>
@@ -175,10 +178,11 @@ require_once __DIR__ . '/../includes/header.php';
         <label for="capa">Capa</label>
 
         <input
-            type="text"
-            id="capa"
-            name="capa"
-            value="<?= htmlspecialchars($capa) ?>">
+           
+          type="file"
+          id="capa"
+          name="capa"
+          accept=".jpg,.jpeg,.png,.webp">
     </div>
 
     <div class="form-group">
@@ -226,11 +230,12 @@ require_once __DIR__ . '/../includes/header.php';
             <label>
 
                 <input
-                    type="checkbox"
-                    name="tags[]"
-                    value="<?= $tag['id'] ?>">
-                    <?= in_array($tag['id'], $tagsDoLivro) ? 'checked' : '' ?>>
-                
+               type="checkbox"
+               name="tags[]"
+               value="<?= $tag['id'] ?>"
+               <?= in_array($tag['id'], $tagsDoLivro) ? 'checked' : '' ?>>
+
+<?= htmlspecialchars($tag['nome']) ?>
 
             </label>
 
