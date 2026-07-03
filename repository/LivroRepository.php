@@ -34,6 +34,10 @@ class LivroRepository {
         return $lista;
     }
 
+
+
+    
+
     public function buscarPorId(int $id): ?Livro {
         $stmt = $this->pdo->prepare('SELECT * FROM livro WHERE id = :id LIMIT 1');
         $stmt->execute([':id' => $id]);
@@ -45,6 +49,10 @@ class LivroRepository {
 
         return null;
     }
+
+
+
+
 
     public function salvar(Livro $livro): void {
         if ($livro->getId() > 0) {
@@ -91,10 +99,17 @@ class LivroRepository {
         $livro->registrarIdGerado((int) $this->pdo->lastInsertId());
     }
 
+
+
+
+
     public function inserir(string $titulo, string $descricao, string $situacao, int $nota, string $capa, int $IdAutor, int $IdCategoria, int $Idusuario): void {
         $livro = Livro::novo($titulo, $descricao, $situacao, $nota, $capa, $IdAutor, $IdCategoria, $Idusuario);
         $this->salvar($livro);
     }
+
+
+
 
     public function atualizar( int $id, string $titulo, string $descricao, string $situacao, int $nota, string $capa, int $IdAutor, int $IdCategoria): void {
         $livro = $this->buscarPorId($id);
@@ -107,10 +122,16 @@ class LivroRepository {
         $this->salvar($livro);
     }
 
+
+
     public function excluir(int $id): void {
         $stmt = $this->pdo->prepare('DELETE FROM livro WHERE id = :id');
         $stmt->execute([':id' => $id]);
     }
+
+
+
+
 
     public function buscarTagsDoLivro(int $IdLivro): array {
 
@@ -152,6 +173,11 @@ class LivroRepository {
         ]);
 
     }
+
+
+
+
+
     }
     public function buscarNomesTags(int $IdLivro): string {
 
@@ -197,6 +223,9 @@ class LivroRepository {
 
     return $stmt->fetchColumn() ?: '';
     }
+
+
+
     public function listarCategoria(int $usuarioId, int $categoriaId): array
 {
     $stmt = $this->pdo->prepare(

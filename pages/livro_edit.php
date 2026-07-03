@@ -48,13 +48,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descricao = trim($_POST['descricao'] ?? '');
     $situacao = trim($_POST['situacao'] ?? '');
     $nota = (int) ($_POST['nota'] ?? 0);
-    $capa = trim($_POST['capa'] ?? '');
     $nomeAutor = trim($_POST['autor'] ?? '');
     $IdAutor = $autorRepo->buscarOuCriar($nomeAutor);
     $IdCategoria = (int) ($_POST['IdCategoria'] ?? 0);
 
-$tagsSelecionadas = $_POST['tags'] ?? [];
+    $tagsSelecionadas = $_POST['tags'] ?? [];
+    
 
+    $capa = $livro->getCapa(); 
+
+   if (isset($_FILES['capa']) && $_FILES['capa']['error'] === UPLOAD_ERR_OK) {
+
+    $permitidos = ['jpg', 'jpeg', 'png', 'webp'];
+
+    $extensao = strtolower(pathinfo($_FILES['capa']['name'], PATHINFO_EXTENSION));
+
+    if (!in_array($extensao, $permitidos)) {
+        throw new InvalidArgumentException('Formato de imagem inválido.');
+    }
+
+    if ($_FILES['capa']['size'] > 2 * 1024 * 1024) {
+        throw new InvalidArgumentException('A imagem deve ter no máximo 2MB.');
+    }
+
+    $novoNome = uniqid() . '.' . $extensao;
+
+    move_uploaded_file(
+        $_FILES['capa']['tmp_name'],
+        __DIR__ . '/../uploads/' . $novoNome
+    );
+
+    $capa = $novoNome;
+}
     try {
        $livro->alterarDados($titulo,$descricao,$situacao,$nota,$capa,$IdAutor,$IdCategoria);
        $repo->salvar($livro);

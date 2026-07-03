@@ -31,11 +31,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $descricao = trim($_POST['descricao'] ?? '');
   $situacao = trim($_POST['situacao'] ?? '');
   $nota = (int) ($_POST['nota'] ?? 0);
-  $capa = trim($_POST['capa'] ?? '');
   $nomeAutor = trim($_POST['autor'] ?? '');
   $IdCategoria = (int) ($_POST['IdCategoria'] ?? 0);
   $tagsSelecionadas = $_POST['tags'] ?? [];
+  $capa = '';
 
+if (isset($_FILES['capa']) && $_FILES['capa']['error'] === UPLOAD_ERR_OK) {
+
+    $arquivo = $_FILES['capa'];
+
+    $extensao = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
+
+    $permitidas = ['jpg', 'jpeg', 'png', 'webp'];
+
+    if (!in_array($extensao, $permitidas)) {
+        throw new InvalidArgumentException('Formato de imagem inválido.');
+    }
+
+    if ($arquivo['size'] > 2 * 1024 * 1024) {
+        throw new InvalidArgumentException('A imagem deve ter no máximo 2MB.');
+    }
+
+    $nomeArquivo = uniqid() . '.' . $extensao;
+
+    move_uploaded_file(
+        $arquivo['tmp_name'],
+        __DIR__ . '/../uploads/' . $nomeArquivo
+    );
+
+    $capa = $nomeArquivo;
+}
     try {
 
        $IdAutor = $autorRepo->buscarOuCriar($nomeAutor);
@@ -72,7 +97,7 @@ require_once __DIR__ . '/../includes/header.php';
 
 <div class="form-card">
 
-<form method="POST" action="livro_create.php">
+<form method="POST" action="livro_create.php" enctype="multipart/form-data">
 
     <div class="form-group">
         <label for="titulo">Título</label>
@@ -124,10 +149,10 @@ require_once __DIR__ . '/../includes/header.php';
         <label for="capa">Capa</label>
 
         <input
-            type="text"
+            type="file"
             id="capa"
             name="capa"
-            value="<?= htmlspecialchars($capa) ?>">
+            accept=".jpg,.jpeg,.png,.webp">
     </div>
 
     <div class="form-group">

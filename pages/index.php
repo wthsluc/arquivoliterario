@@ -84,7 +84,17 @@ require_once __DIR__ . '/../includes/header.php';
             <td><?= htmlspecialchars($livro->getDescricao()) ?></td>
             <td><?= htmlspecialchars($livro->getSituacao()) ?></td>
             <td><?= $livro->getNota() ?></td>
-            <td><?= htmlspecialchars($livro->getCapa()) ?></td>
+            <td>
+
+            <?php if ($livro->getCapa() !== ''): ?>
+
+            <img
+            src="../uploads/<?= htmlspecialchars($livro->getCapa()) ?>"
+            width="80">
+
+<?php endif; ?>
+
+</td>
             <td><?= htmlspecialchars($repo->buscarNomeAutor($livro->getIdAutor())) ?></td>
             <td><?= htmlspecialchars($repo->buscarNomeCategoria($livro->getIdCategoria())) ?></td>
             <td><?= htmlspecialchars($repo->buscarNomesTags($livro->getId())) ?></td>
