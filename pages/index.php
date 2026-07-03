@@ -47,8 +47,9 @@ require_once __DIR__ . '/../includes/header.php';
             <td><?= htmlspecialchars($livro->getSituacao()) ?></td>
             <td><?= $livro->getNota() ?></td>
             <td><?= htmlspecialchars($livro->getCapa()) ?></td>
-            <td><?= $livro->getIdAutor() ?></td>
-            <td><?= $livro->getIdCategoria() ?></td>
+            <td><?= htmlspecialchars($repo->buscarNomeAutor($livro->getIdAutor())) ?></td>
+            <td><?= htmlspecialchars($repo->buscarNomeCategoria($livro->getIdCategoria())) ?></td>
+            <td><?= htmlspecialchars($repo->buscarNomesTags($livro->getId())) ?></td>
             <td class="acoes">
               <a href="livro_edit.php?id=<?= $livro->getId() ?>" class="btn btn-sm btn-editar">Editar</a>
               <a href="livro_delete.php?id=<?= $livro->getId() ?>" class="btn btn-sm btn-excluir">Excluir</a>

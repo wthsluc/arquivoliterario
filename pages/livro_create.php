@@ -33,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nota = (int) ($_POST['nota'] ?? 0);
   $capa = trim($_POST['capa'] ?? '');
   $nomeAutor = trim($_POST['autor'] ?? '');
-  $IdCategoria = (int) ($_POST['IdCategoria'] ?? 0);
+  $nomeCategoria = trim($_POST['categoria'] ?? '');
+  $IdCategoria = $categoriaRepo->buscarOuCriar($nomeCategoria);
   
   $tagsSelecionadas = $_POST['tags'] ?? [];
 

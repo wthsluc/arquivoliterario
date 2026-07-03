@@ -49,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $situacao = trim($_POST['situacao'] ?? '');
     $nota = (int) ($_POST['nota'] ?? 0);
     $capa = trim($_POST['capa'] ?? '');
-    $IdAutor = (int) ($_POST['IdAutor'] ?? 0);
+    $nomeAutor = trim($_POST['autor'] ?? '');
+    $IdAutor = $autorRepo->buscarOuCriar($nomeAutor);
     $IdCategoria = (int) ($_POST['IdCategoria'] ?? 0);
 
 $tagsSelecionadas = $_POST['tags'] ?? [];
@@ -156,28 +157,15 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
 
     <div class="form-group">
-        <label for="IdAutor">Autor</label>
+        
+         <label for="autor">Autor</label>
 
-        <select
-            id="IdAutor"
-            name="IdAutor"
-            required>
-
-            <option value="">Selecione...</option>
-
-            <?php foreach ($autores as $autor): ?>
-
-                <option
-                    value="<?= $autor['id'] ?>"
-                    <?= $autor['id'] == $IdAutor ? 'selected' : '' ?>>
-
-                    <?= htmlspecialchars($autor['nome']) ?>
-
-                </option>
-
-            <?php endforeach; ?>
-
-        </select>
+    <input
+        type="text"
+        id="autor"
+        name="autor"
+        value=""
+        required>
     </div>
 
     <div class="form-group">

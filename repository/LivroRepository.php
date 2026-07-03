@@ -14,7 +14,17 @@ class LivroRepository {
     /** @return Livro[] */
     public function listarPorUsuario(int $usuarioId): array {
         $stmt = $this->pdo->prepare(
-            'SELECT * FROM livro WHERE Idusuario = :uid ORDER BY titulo ASC'
+             'SELECT
+        livro.*,
+        autor.nome AS nomeAutor,
+        categoria.nome AS nomeCategoria
+     FROM livro
+     INNER JOIN autor
+         ON livro.IdAutor = autor.id
+     INNER JOIN categoria
+         ON livro.IdCategoria = categoria.id
+     WHERE livro.Idusuario = :uid
+     ORDER BY livro.titulo ASC'
         );
         $stmt->execute([':uid' => $usuarioId]);
         $lista = [];
@@ -111,7 +121,7 @@ class LivroRepository {
     );
 
     $stmt->execute([
-        ':livro' => $idLivro
+        ':livro' => $IdLivro
     ]);
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
@@ -162,5 +172,30 @@ class LivroRepository {
 
     return implode(', ', $tags);
     }
+    public function buscarNomeAutor(int $idAutor): string
+    {
+    $stmt = $this->pdo->prepare(
+        'SELECT nome FROM autor WHERE id = :id'
+    );
+
+    $stmt->execute([
+        ':id' => $idAutor
+    ]);
+
+    return $stmt->fetchColumn() ?: '';
+    }
+
+    public function buscarNomeCategoria(int $idCategoria): string
+{
+    $stmt = $this->pdo->prepare(
+        'SELECT nome FROM categoria WHERE id = :id'
+    );
+
+    $stmt->execute([
+        ':id' => $idCategoria
+    ]);
+
+    return $stmt->fetchColumn() ?: '';
+}
 }
 
