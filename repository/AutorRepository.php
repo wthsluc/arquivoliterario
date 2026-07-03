@@ -16,4 +16,23 @@ class AutorRepository {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function BuscarOuCriar(string $nome): int
+    {
+    $sql = "SELECT id FROM autor WHERE nome = :nome";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([':nome' => $nome]);
+
+    $autor = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($autor) {
+        return (int)$autor['id'];
+    }
+
+    $sql = "INSERT INTO autor (nome) VALUES (:nome)";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([':nome' => $nome]);
+
+    return (int)$this->pdo->lastInsertId();
+}
 }

@@ -27,18 +27,20 @@ $erro = '';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   $titulo = trim($_POST['titulo'] ?? '');
+  $titulo = trim($_POST['titulo'] ?? '');
   $descricao = trim($_POST['descricao'] ?? '');
   $situacao = trim($_POST['situacao'] ?? '');
   $nota = (int) ($_POST['nota'] ?? 0);
   $capa = trim($_POST['capa'] ?? '');
-  $IdAutor = (int) ($_POST['IdAutor'] ?? 0);
+  $nomeAutor = trim($_POST['autor'] ?? '');
   $IdCategoria = (int) ($_POST['IdCategoria'] ?? 0);
   
   $tagsSelecionadas = $_POST['tags'] ?? [];
 
     try {
-        $livro = Livro::novo($titulo, $descricao, $situacao, $nota, $capa, $IdAutor, $IdCategoria, $_SESSION['usuario_id']);
+
+       $IdAutor = $autorRepo->buscarOuCriar($nomeAutor);
+        $livro = Livro::novo($titulo, $descricao, $situacao, $nota, $capa, $IdAutor, $IdCategoria, $_SESSION['Idusuario']);
 
        $repo->salvar($livro);
        $repo->salvarTags(
@@ -130,25 +132,15 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
 
     <div class="form-group">
-        <label for="IdAutor">Autor</label>
+    <label for="autor">Autor</label>
 
-        <select
-            id="IdAutor"
-            name="IdAutor"
-            required>
-
-            <option value="">Selecione...</option>
-
-            <?php foreach ($autores as $autor): ?>
-
-                <option value="<?= $autor['id'] ?>">
-                    <?= htmlspecialchars($autor['nome']) ?>
-                </option>
-
-            <?php endforeach; ?>
-
-        </select>
-    </div>
+    <input
+        type="text"
+        id="autor"
+        name="autor"
+        value=""
+        required>
+</div>
 
     <div class="form-group">
         <label for="IdCategoria">Categoria</label>
