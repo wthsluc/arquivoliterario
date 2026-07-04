@@ -60,21 +60,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="login-body">
 
-<div class="login-card>
+<div class="login-card">
 
 <h2>Cadastrar Usuário</h2>
 
 <?php if ($erro !== ''): ?>
 
-```
+
 <p><?= htmlspecialchars($erro) ?></p>
-```
 
 <?php endif; ?>
 
-<form method="POST">
+<form method="POST" action="registro.php">
 
-```
 <label>Nome</label>
 <input type="text" name="nome" required>
 
@@ -90,10 +88,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <br><br>
 
-<button type="submit">
+<button type="submit" class="class=btn btn-primary btn-full">
     Cadastrar
 </button>
-```
+
 
 </form>
 
