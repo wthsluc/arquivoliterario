@@ -46,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="login-body">
 
-<div class="login-card">
+<div class="ficha">
   <div class="login-logo">Arquivo Literário</div>
-  <h1 class="login-title">Entrar no sistema</h1>
+  <h1 class="login-title">bem vindo a sua biblioteca pessoal!</h1>
 
   <?php if ($erro !== ''): ?>
     <div class="alert alert-erro"><?= htmlspecialchars($erro) ?></div>
