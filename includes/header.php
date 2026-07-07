@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arquivo Literário</title>
-  <link rel="stylesheet" href="../assets/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivo Literário</title>
+
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="header-inner">
-    <a href="../pages/index.php" class="logo">Arquivo Literário</a>
 
-    <nav class="nav">
-      <a href="../pages/index.php">Meus Livros</a>
-      <a href="../pages/livro_create.php">+ Novo Livro</a>
-    </nav>
+    <div class="header-inner">
 
-    <div class="header-user">
-      <?php
-        $nomeUser = $_SESSION['usuario_nome'] ?? 'Usuário';
-      ?>
-      <span class="user-name">
-        <?= htmlspecialchars($nomeUser) ?>
-      </span>
-      <a href="../pages/usuario_delete.php" class="btn-logout">Excluir Conta</a>
+        <a href="../pages/index.php" class="logo">
+             Arquivo Literário
+        </a>
 
-      <a href="../pages/logout.php" class="btn-logout">Sair</a>
+        <?php
+            $nomeUser = $_SESSION['usuario_nome'] ?? 'Usuário';
+        ?>
+
+        <details class="perfil">
+
+    <summary class="foto-perfil">
+
+        <?= strtoupper(substr($nomeUser,0,1)) ?>
+
+    </summary>
+
+    <div class="menu-perfil">
+
+        <div class="menu-nome">
+            <?= htmlspecialchars($nomeUser) ?>
+        </div>
+
+        <a href="../pages/index.php?perfil=1">
+            Informações
+        </a>
+
+        <a href="../pages/logout.php">
+            Sair
+        </a>
+
     </div>
-  </div>
+
 </header>
 
 <main class="container">
