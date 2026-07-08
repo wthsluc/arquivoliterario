@@ -44,7 +44,7 @@
         </a>
 
     </div>
-
+        </details>
 </header>
 
 <main class="container">

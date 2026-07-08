@@ -252,55 +252,32 @@ form{
 .site-header{
 
     width:100%;
-
     background:rgba(255,255,255,.75);
-
     backdrop-filter:blur(12px);
-
     box-shadow:0 8px 25px rgba(0,0,0,.08);
-
     position:sticky;
-
     top:0;
-
     z-index:999;
-
 }
 
 .header-inner{
-
     max-width:1200px;
-
     height:85px;
-
     margin:auto;
-
     padding:0 30px;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
 }
-
 .logo{
-
     text-decoration:none;
-
     font-size:32px;
-
     font-weight:700;
-
     color:#4f3118;
-
 }
 
 .logo:hover{
-
     opacity:.8;
-
 }
 
 /*==========================
@@ -308,15 +285,10 @@ form{
 ==========================*/
 
 .container{
-
     width:100%;
-
     max-width:1100px;
-
     margin:40px auto;
-
     padding:0 20px;
-
 }
 
 /*==========================
@@ -324,39 +296,22 @@ form{
 ==========================*/
 
 .perfil{
-
     position:relative;
-
 }
-
 .foto-perfil{
-
     width:58px;
-
     height:58px;
-
     border-radius:50%;
-
     border:none;
-
     background:#6d4a2f;
-
     color:white;
-
     font-size:24px;
-
     font-weight:bold;
-
     cursor:pointer;
-
     transition:.2s;
-
 }
-
 .foto-perfil:hover{
-
     transform:scale(1.05);
-
 }
 
 /*==========================
@@ -364,74 +319,40 @@ form{
 ==========================*/
 
 .menu-perfil{
-
     position:absolute;
-
     top:75px;
-
     right:0;
-
     width:250px;
-
     background:white;
-
     border-radius:18px;
-
     overflow:hidden;
-
     display:none;
-
     box-shadow:0 15px 40px rgba(0,0,0,.2);
-
 }
-
 .perfil[open] .menu-perfil{
-
     display:block;
-
 }
-
-
 .menu-nome{
-
     padding:20px;
-
     text-align:center;
-
     font-size:18px;
-
     font-weight:bold;
-
     background:#f8f8f8;
-
     border-bottom:1px solid #ddd;
-
 }
-
 .menu-perfil a{
-
     display:block;
-
     padding:16px 22px;
-
     color:#333;
-
     text-decoration:none;
-
     transition:.2s;
-
 }
-
 .menu-perfil a:hover{
-
     background:#f5f5f5;
-
 }
 
 .excluir{
-
     color:#b40000 !important;
-
 }
 
 /*==========================
@@ -439,15 +360,10 @@ form{
 ==========================*/
 
 .page-header{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     margin-bottom:30px;
-
 }
 
 /*==========================
@@ -455,92 +371,122 @@ form{
 ==========================*/
 
 .form-inline{
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     gap:15px;
-
     margin-bottom:35px;
-
 }
 
 /*==========================
         LISTA
 ==========================*/
-
 .lista-livros{
-
     width:100%;
-
     display:flex;
-
     flex-direction:column;
-
     gap:18px;
-
 }
-
 .livro-item{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     padding:22px 28px;
-
     background:rgba(255,255,255,.82);
-
     backdrop-filter:blur(8px);
-
     border-radius:18px;
-
     box-shadow:0 10px 25px rgba(0,0,0,.08);
-
 }
-
 .titulo-livro{
-
     font-size:22px;
-
     font-weight:600;
-
 }
-
 .btn-vermais{
-
     padding:12px 22px;
-
     border-radius:10px;
-
     background:#6d4a2f;
-
     color:white;
-
     text-decoration:none;
-
     transition:.2s;
-
 }
-
 .btn-vermais:hover{
-
     background:#54361d;
-
 }
 .perfil summary{
-
     list-style:none;
-
 }
-
 .perfil summary::-webkit-details-marker{
-
     display:none;
-
+}
+.modal-perfil{
+    width:420px;
+    max-width:90%;
+    background:white;
+    border-radius:25px;
+    padding:40px;
+    position:relative;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+.foto-grande{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#6d4a2f;
+    color:white;
+    font-size:50px;
+    font-weight:bold;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:auto;
+    margin-bottom:25px;
+}
+.modal-perfil h2{
+    margin-bottom:8px;
+    color:#4d3118;
+}
+.email{
+    color:#777;
+    font-size:18px;
+}
+.fechar{
+    position:absolute;
+    top:18px;
+    right:22px;
+    font-size:26px;
+    text-decoration:none;
+    color:#555;
+}
+.fechar:hover{
+    color:black;
+}
+.linha-perfil{
+    margin:30px 0;
+    border:none;
+    border-top:1px solid rgba(0,0,0,.15);
+}
+.estatisticas{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:20px;
+}
+.card-estatistica{
+    background:#f7f4ef;
+    border-radius:15px;
+    padding:18px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+.numero{
+    display:block;
+    font-size:30px;
+    font-weight:bold;
+    color:#5d3b1f;
+    margin-bottom:8px;
+}
+.texto{
+    font-size:14px;
+    color:#666;
 }

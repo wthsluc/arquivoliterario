@@ -3,11 +3,18 @@
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../repository/LivroRepository.php';
 require_once __DIR__ . '/../repository/CategoriaRepository.php';
-
+require_once __DIR__ . '/../repository/UsuarioRepository.php';
 $repo     = new LivroRepository();
 $idLivro = (int) ($_GET['id'] ?? 0);
-
 $livroSelecionado = null;
+$mostrarPerfil = isset($_GET['perfil']);
+$usuarioRepo = new UsuarioRepository();
+$usuario = $usuarioRepo->buscarPorId($_SESSION['Idusuario']);
+$totalLivros = $usuarioRepo->contarLivros($_SESSION['Idusuario']);
+$mediaNotas = $usuarioRepo->mediaNotas($_SESSION['Idusuario']);
+$livrosLidos = $usuarioRepo->contarLidos($_SESSION['Idusuario']);
+$livrosLendo = $usuarioRepo->contarLendo($_SESSION['Idusuario']);
+$queroLer = $usuarioRepo->contarQueroLer($_SESSION['Idusuario']);
 
 if ($idLivro > 0) {
     $livroSelecionado = $repo->buscarPorId($idLivro);
@@ -80,17 +87,13 @@ require_once __DIR__ . '/../includes/header.php';
             <span class="titulo-livro">
                 <?= htmlspecialchars($livro->getTitulo()) ?>
             </span>
-
             <a
                 class="btn-vermais"
                 href="index.php?id=<?= $livro->getId() ?>">
                 Ver mais
             </a>
-
         </div>
-
     <?php endforeach; ?>
-
 </div>
 
 <?php endif; ?>
@@ -137,39 +140,71 @@ require_once __DIR__ . '/../includes/header.php';
         <h4>🏷 Tags</h4>
         <span><?= htmlspecialchars($repo->buscarNomesTags($livroSelecionado->getId())) ?></span>
     </div>
-
 </div>
 
 <hr>
 
-
         <p><?= nl2br(htmlspecialchars($livroSelecionado->getDescricao())) ?></p>
-
         <div class="modal-botoes">
-
             <a
                 href="livro_edit.php?id=<?= $livroSelecionado->getId() ?>"
                 class="btn btn-primary">
-
                 Editar
-
             </a>
-
             <a
                 href="livro_delete.php?id=<?= $livroSelecionado->getId() ?>"
                 class="btn btn-danger">
-
                 Excluir
-
             </a>
-
         </div>
+    </div>
+</div>
+<?php endif; ?>
 
+<?php if ($mostrarPerfil): ?>
+<div class="modal-overlay">
+    <div class="modal-perfil">
+        <a href="index.php" class="fechar">✕</a>
+        <div class="foto-grande">
+            <?= strtoupper(substr($usuario->getNome(),0,1)) ?>
+        </div>
+        <h2>
+            <?= htmlspecialchars($usuario->getNome()) ?>
+        </h2>
+        <p class="email">
+            <?= htmlspecialchars($usuario->getEmail()) ?>
+        </p>
+        <hr class="linha-perfil">
+
+<div class="estatisticas">
+
+    <div class="card-estatistica">
+        <span class="numero"><?= $totalLivros ?></span>
+        <span class="texto">Livros cadastrados</span>
+    </div>
+
+    <div class="card-estatistica">
+        <span class="numero"><?= number_format($mediaNotas, 1, ',', '.') ?></span>
+        <span class="texto">Média das notas</span>
+    </div>
+
+    <div class="card-estatistica">
+        <span class="numero"><?= $livrosLidos ?></span>
+        <span class="texto">Livros lidos</span>
+    </div>
+
+    <div class="card-estatistica">
+        <span class="numero"><?= $livrosLendo ?></span>
+        <span class="texto">Lendo</span>
+    </div>
+
+    <div class="card-estatistica">
+        <span class="numero"><?= $queroLer ?></span>
+        <span class="texto">Quero ler</span>
     </div>
 
 </div>
-
+    </div>
+</div>
 <?php endif; ?>
-
-
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
