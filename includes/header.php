@@ -43,6 +43,13 @@
             Sair
         </a>
 
+       
+        <a href="usuario_delete.php" class="btn btn-danger">
+    
+    Excluir Conta
+
+        </a>
+
     </div>
         </details>
 </header>

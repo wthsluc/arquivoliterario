@@ -174,36 +174,7 @@ require_once __DIR__ . '/../includes/header.php';
         <p class="email">
             <?= htmlspecialchars($usuario->getEmail()) ?>
         </p>
-        <hr class="linha-perfil">
-
-<div class="estatisticas">
-
-    <div class="card-estatistica">
-        <span class="numero"><?= $totalLivros ?></span>
-        <span class="texto">Livros cadastrados</span>
-    </div>
-
-    <div class="card-estatistica">
-        <span class="numero"><?= number_format($mediaNotas, 1, ',', '.') ?></span>
-        <span class="texto">Média das notas</span>
-    </div>
-
-    <div class="card-estatistica">
-        <span class="numero"><?= $livrosLidos ?></span>
-        <span class="texto">Livros lidos</span>
-    </div>
-
-    <div class="card-estatistica">
-        <span class="numero"><?= $livrosLendo ?></span>
-        <span class="texto">Lendo</span>
-    </div>
-
-    <div class="card-estatistica">
-        <span class="numero"><?= $queroLer ?></span>
-        <span class="texto">Quero ler</span>
-    </div>
-
-</div>
+        
     </div>
 </div>
 <?php endif; ?>
