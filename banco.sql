@@ -6,9 +6,7 @@ CREATE DATABASE IF NOT EXISTS arquivoliterario
 
 USE arquivoliterario;
 
--- ------------------------------------------------------------
---  Tabela de usuários
--- ------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS usuario (
     id        INT          NOT NULL AUTO_INCREMENT,
     nome      VARCHAR(100) NOT NULL,
@@ -20,10 +18,6 @@ CREATE TABLE IF NOT EXISTS usuario (
 ) ENGINE=InnoDB;
 
 
-
--- ------------------------------------------------------------
---  Tabela de categorias
--- ------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS categoria (
     id         INT          NOT NULL AUTO_INCREMENT,
     nome       VARCHAR(100) NOT NULL,
@@ -35,9 +29,7 @@ CREATE TABLE IF NOT EXISTS categoria (
 
 
 
--- ------------------------------------------------------------
--- Autores
--- ------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS autor (
     id         INT          NOT NULL AUTO_INCREMENT,
     nome       VARCHAR(150) NOT NULL,
@@ -46,9 +38,6 @@ CREATE TABLE IF NOT EXISTS autor (
 ) ENGINE=InnoDB;
 
 
--- ============================================================
--- tags
--- ============================================================
 
 CREATE TABLE IF NOT EXISTS tag (
     id         INT         NOT NULL AUTO_INCREMENT,
@@ -61,9 +50,7 @@ CREATE TABLE IF NOT EXISTS tag (
 
 
 
--- ============================================================
--- livro
--- ============================================================
+
 
 CREATE TABLE IF NOT EXISTS livro (
     id        INT          NOT NULL AUTO_INCREMENT,
@@ -95,9 +82,7 @@ CREATE TABLE IF NOT EXISTS livro (
 
 
 
--- ============================================================
--- livro <-> tag
--- ============================================================
+
 
 CREATE TABLE IF NOT EXISTS livro_tag (
     IdLivro        INT        NOT NULL,
@@ -118,11 +103,9 @@ CREATE TABLE IF NOT EXISTS livro_tag (
 ) ENGINE=InnoDB;
 
 
--- ============================================================
--- usuario inicial
--- Email: MeuNomeLegal@gmail.com
+
 -- Senha: 123456
--- ============================================================
+
 
 INSERT INTO usuario (nome, email, senha)
 VALUES (
@@ -132,9 +115,6 @@ VALUES (
 );
 
 
--- ============================================================
--- categorias iniciais (*tenho que adcionar as definitivas depois)
--- ============================================================
 
 INSERT INTO categoria (nome) VALUES
 ('Romance'),
@@ -145,9 +125,7 @@ INSERT INTO categoria (nome) VALUES
 ('Suspense');
 
 
--- ============================================================
--- tags iniciais (*tenho que adcionar as definitivas depois)
--- ============================================================
+
 
 INSERT INTO tag (nome) VALUES
 ('Antigas'),
@@ -156,5 +134,8 @@ INSERT INTO tag (nome) VALUES
 ('Distopia'),
 ('Fanfic'),
 ('Nacional'),
-('infantil');
+('infantil'), 
+('utopia'),
+('adolescente');
+
 

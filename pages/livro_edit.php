@@ -193,8 +193,7 @@ require_once __DIR__ . '/../includes/header.php';
         type="text"
         id="autor"
         name="autor"
-        value=""
-        required>
+        value="<?= htmlspecialchars($nomeAutor) ?>">
     </div>
 
     <div class="form-group">

@@ -2,7 +2,6 @@
 
 session_start();
 
-// Se já estiver logado, vai direto para a página principal
 if (!empty($_SESSION['Idusuario'])) {
     header('Location: index.php');
     exit;
